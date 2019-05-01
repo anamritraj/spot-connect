@@ -1,0 +1,12 @@
+.song-panel-header p {
+  margin: 0px;
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.time {
+  font-size: 0.9em;
+  color: #9a9a9a;
+}
