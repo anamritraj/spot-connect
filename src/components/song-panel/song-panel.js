@@ -17,12 +17,20 @@ const customPanelStyle = {
   boxShadow: "0 0 30px #f3f1f1"
 };
 
-export default function songPanel() {
+export default function songPanel({ data }) {
   return (
     <Col xs={{ span: 12, offset: 6 }} lg={{ span: 12, offset: 6 }}>
       <Collapse bordered={false}>
         <Panel
-          header={<PanelHeader />}
+          header={
+            <PanelHeader
+              image={data.album.images[0].url}
+              name={data.name}
+              album={data.album.name}
+              artists={data.artists}
+              lastplayed={data.last_played}
+            />
+          }
           key="1"
           showArrow={false}
           style={customPanelStyle}

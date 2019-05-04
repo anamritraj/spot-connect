@@ -10,8 +10,7 @@ export default class Content extends Component {
     super();
     this.state = {
       songs: [],
-      playing: null,
-      last_played: null
+      playing: null
     };
   }
   componentDidMount = () => {
@@ -19,23 +18,12 @@ export default class Content extends Component {
     getRecentlyPlayedSongs()
       .then(({ data }) => {
         let songs = data.data.reduce((accum, curr) => {
-          const song = {
-            played_at: curr.data.played_at,
-            song_id: curr.data.songid,
-            album: curr.item.album,
-            artists: curr.item.artists,
-            duration: curr.item.duration_ms,
-            name: curr.item.name,
-            times_played: curr.item.times_played,
-            url: curr.item.url
-          };
-          accum.push(song);
+          accum.push(curr.song);
           return accum;
         }, []);
         this.setState({
           songs: songs,
-          playing: false,
-          last_played: songs[0]
+          playing: true
         });
       })
       .catch(function(error) {
@@ -43,18 +31,33 @@ export default class Content extends Component {
         console.log("There was an error in getting the data");
         console.log(error);
       });
+
     socket.emit("join", "Anand's Spotify");
+
     socket.on("updated_song", this.updateSong);
   };
 
   updateSong = data => {
-    console.log(data);
+    if (data.is_playing === false) {
+      const newState = {
+        ...this.state,
+        playing: false
+      };
+      this.setState(newState);
+    } else {
+      let songs = [data, ...this.state.songs];
+      const newState = {
+        songs,
+        playing: true
+      };
+      this.setState(newState);
+    }
   };
 
   render() {
     return (
       <div className="content-wrapper">
-        <ContentHeader title="Here's what your friends are listening to" />
+        <ContentHeader title="Here's what I'm listening to" />
         <ContentBody state={this.state} />
       </div>
     );

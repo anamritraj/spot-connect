@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 
-import MainMenu from "../navigation/MainMenu";
 import Content from "../content/Content";
 
 var socket;
@@ -28,14 +26,7 @@ class App extends Component {
       });
   }
   render() {
-    return (
-      <Router>
-        <div className="App">
-          <MainMenu />
-        </div>
-        <Content />
-      </Router>
-    );
+    return <Content />;
   }
 }
 export default App;

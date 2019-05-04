@@ -1,5 +1,8 @@
-h1 {
+.content-wrapper h1 {
   text-align: center;
-  font-family: sans-serif;
+  font-family: "Roboto Slab", serif;
   margin-top: 25px;
+  margin-bottom: 1em;
+  font-weight: 700;
+  font-size: 3em;
 }

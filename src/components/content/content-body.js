@@ -8,7 +8,7 @@ export default function contentBody(props) {
     <div>
       <Row>
         {props.state.songs.map(element => {
-          return <SongPanel data={element} key={element.played_at} />;
+          return <SongPanel data={element} key={element._id} />;
         })}
       </Row>
     </div>
