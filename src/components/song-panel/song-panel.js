@@ -3,11 +3,11 @@ import { Collapse, Col } from "antd";
 import PanelHeader from "./panel-header";
 import "./song-panel.css";
 const Panel = Collapse.Panel;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+// const text = `
+//   A dog is a type of domesticated animal.
+//   Known for its loyalty and faithfulness,
+//   it can be found as a welcome guest in many households across the world.
+// `;
 
 const customPanelStyle = {
   borderRadius: 4,
@@ -17,13 +17,14 @@ const customPanelStyle = {
   boxShadow: "0 0 30px #f3f1f1"
 };
 
-export default function songPanel({ data }) {
+export default function songPanel({ data, isPlaying }) {
   return (
-    <Col xs={{ span: 12, offset: 6 }} lg={{ span: 12, offset: 6 }}>
+    <Col xs={{ span: 24, offset: 0 }} lg={{ span: 12, offset: 6 }}>
       <Collapse bordered={false}>
         <Panel
           header={
             <PanelHeader
+              isPlaying={isPlaying}
               image={data.album.images[0].url}
               name={data.name}
               album={data.album.name}
@@ -31,12 +32,9 @@ export default function songPanel({ data }) {
               lastplayed={data.last_played}
             />
           }
-          key="1"
           showArrow={false}
           style={customPanelStyle}
-        >
-          <p>{text}</p>
-        </Panel>
+        />
       </Collapse>
     </Col>
   );

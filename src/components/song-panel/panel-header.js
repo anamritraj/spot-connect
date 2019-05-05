@@ -12,10 +12,10 @@ export default function panelHeader(props) {
   return (
     <div className="song-panel-header">
       <Row>
-        <Col span={4}>
+        <Col xs={{ span: 8, offset: 0 }} lg={{ span: 4, offset: 0 }}>
           <img style={{ width: "85px" }} src={props.image} alt="song art" />
         </Col>
-        <Col span={20}>
+        <Col xs={{ span: 16, offset: 0 }} lg={{ span: 20, offset: 0 }}>
           <p className="song-title">{props.name}</p>
           <p className="album">{props.album}</p>
           <p className="artist">
@@ -31,7 +31,9 @@ export default function panelHeader(props) {
             })}
           </p>
           <p className="time" title={getTime(props.lastplayed)}>
-            {timeDifference(parseInt(props.lastplayed))}
+            {props.isPlaying
+              ? "Now Playing.."
+              : timeDifference(parseInt(props.lastplayed))}
           </p>
         </Col>
       </Row>

@@ -7,8 +7,14 @@ export default function contentBody(props) {
   return (
     <div>
       <Row>
-        {props.state.songs.map(element => {
-          return <SongPanel data={element} key={element._id} />;
+        {props.state.songs.map((element, index) => {
+          return (
+            <SongPanel
+              data={element}
+              key={element._id}
+              isPlaying={index === 0 && props.state.playing ? true : false}
+            />
+          );
         })}
       </Row>
     </div>
